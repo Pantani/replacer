@@ -2,15 +2,11 @@
 .idea
 
 ### APP ###
-*.csv
+test/out.txt
 *.log
-lvldb/*
-internal/database/lvldb/*
-txs/*
 Build
 dist/*
 bin/*
-test/*
 
 ### macOS ###ls
 *.DS_Store

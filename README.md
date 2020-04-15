@@ -12,8 +12,8 @@ Deploy it in less than 30 seconds!
 * [GO](https://golang.org/doc/install) `1.14+`
 * [MongoDb](https://docs.mongodb.com/manual)
 
-### Run
-#### Running Locally
+### Running Locally
+#### CLI
 
 ```shell script
 $ go get -u github.com/Pantani/replacer
@@ -21,29 +21,30 @@ $ cd $GOPATH/src/github.com/Pantani/replacer
 $ make start
 ```
 
+#### IDE ( GoLand )
+
+1.  Run;
+2.  Edit configuration;
+3.  New Go build configuration;
+4.  Select `directory` as configuration type;
+5.  Set `api` as program argument and `-i` as Go tools argument;
+
+#### Tools
+##### Setup MongoDb
+
+```shell script
+brew install mongodb
+``` 
+
+### Docker
 #### Running inside a Docker
 
 ```shell script
 docker-compose up -d
 ```
 
-#### Running in the IDE ( GoLand )
 
-1.  Run
-2.  Edit configuration
-3.  New Go build configuration
-4.  Select `directory` as configuration type
-5.  Set `api` as program argument and `-i` as Go tools argument 
-
-#### Tools
-
--   Setup MongoDb
-
-```shell script
-brew install mongodb
-``` 
-
-#### Make commands
+### Make commands
 
 ```
 - install       Install missing dependencies. Runs `go get` internally. e.g; make install get=github.com/foo/bar
@@ -61,14 +62,14 @@ brew install mongodb
 - script-test   Run tests from `test/test.sh`
 ```
 
-#### Environment Variables
+### Environment Variables
 
 All environment variables for developing are set inside the .env file.
 
 ### Docs
 
-Swagger API docs provided at path `/swagger/index.html`
+Swagger API docs provided at path `/swagger/index.html`.
 
 ### Unit Tests
 
-To run the unit tests: `make test`
+To run the unit tests: `make test`.
