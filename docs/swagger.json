@@ -1,0 +1,242 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Replacer API for test interview.",
+        "title": "Backend Interview",
+        "contact": {
+            "name": "Danilo Pantani",
+            "url": "https://github.com/Pantani"
+        },
+        "license": {
+            "name": "MIT License",
+            "url": "https://raw.githubusercontent.com/trustwallet/redemption/master/LICENSE"
+        },
+        "version": "1.0"
+    },
+    "paths": {
+        "/annotate": {
+            "post": {
+                "description": "Get all annotates html snippet",
+                "consumes": [
+                    "text/plain"
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "tags": [
+                    "annotate"
+                ],
+                "summary": "Get Annotate",
+                "operationId": "get_annotate",
+                "parameters": [
+                    {
+                        "description": "The html to be replaced",
+                        "name": "html",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/replacer.Html"
+                        }
+                    }
+                }
+            }
+        },
+        "/names": {
+            "get": {
+                "description": "Get all names details",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "name"
+                ],
+                "summary": "Get all names",
+                "operationId": "get_all_names",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/replacer.Status"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete all name",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "name"
+                ],
+                "summary": "Delete all names",
+                "operationId": "del_all_names",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/replacer.Status"
+                        }
+                    }
+                }
+            }
+        },
+        "/names/{name}": {
+            "get": {
+                "description": "Get a name detail",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "name"
+                ],
+                "summary": "Get name",
+                "operationId": "get_name",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "the name",
+                        "name": "name",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/replacer.Status"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Insert or update a name",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "name"
+                ],
+                "summary": "Insert name",
+                "operationId": "insert_name",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "the name",
+                        "name": "name",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "The url to insert",
+                        "name": "url",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/replacer.NameRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/replacer.Status"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete a name",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "name"
+                ],
+                "summary": "Delete name",
+                "operationId": "del_name",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "the name",
+                        "name": "name",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/replacer.Status"
+                        }
+                    }
+                }
+            }
+        },
+        "/status": {
+            "get": {
+                "description": "Get application status",
+                "tags": [
+                    "status"
+                ],
+                "summary": "Get Status",
+                "operationId": "health",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/replacer.Status"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "replacer.Html": {
+            "type": "string"
+        },
+        "replacer.NameRequest": {
+            "type": "object",
+            "properties": {
+                "url": {
+                    "type": "string"
+                }
+            }
+        },
+        "replacer.Status": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "boolean"
+                }
+            }
+        }
+    }
+}

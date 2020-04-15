@@ -1,0 +1,161 @@
+definitions:
+  replacer.Html:
+    type: string
+  replacer.NameRequest:
+    properties:
+      url:
+        type: string
+    type: object
+  replacer.Status:
+    properties:
+      status:
+        type: boolean
+    type: object
+info:
+  contact:
+    name: Danilo Pantani
+    url: https://github.com/Pantani
+  description: Replacer API for test interview.
+  license:
+    name: MIT License
+    url: https://raw.githubusercontent.com/trustwallet/redemption/master/LICENSE
+  title: Backend Interview
+  version: "1.0"
+paths:
+  /annotate:
+    post:
+      consumes:
+      - text/plain
+      description: Get all annotates html snippet
+      operationId: get_annotate
+      parameters:
+      - description: The html to be replaced
+        in: body
+        name: html
+        required: true
+        schema:
+          type: string
+      produces:
+      - text/plain
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/replacer.Html'
+      summary: Get Annotate
+      tags:
+      - annotate
+  /names:
+    delete:
+      consumes:
+      - application/json
+      description: Delete all name
+      operationId: del_all_names
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/replacer.Status'
+      summary: Delete all names
+      tags:
+      - name
+    get:
+      consumes:
+      - application/json
+      description: Get all names details
+      operationId: get_all_names
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/replacer.Status'
+      summary: Get all names
+      tags:
+      - name
+  /names/{name}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a name
+      operationId: del_name
+      parameters:
+      - description: the name
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/replacer.Status'
+      summary: Delete name
+      tags:
+      - name
+    get:
+      consumes:
+      - application/json
+      description: Get a name detail
+      operationId: get_name
+      parameters:
+      - description: the name
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/replacer.Status'
+      summary: Get name
+      tags:
+      - name
+    put:
+      consumes:
+      - application/json
+      description: Insert or update a name
+      operationId: insert_name
+      parameters:
+      - description: the name
+        in: path
+        name: name
+        required: true
+        type: string
+      - description: The url to insert
+        in: body
+        name: url
+        required: true
+        schema:
+          $ref: '#/definitions/replacer.NameRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/replacer.Status'
+      summary: Insert name
+      tags:
+      - name
+  /status:
+    get:
+      description: Get application status
+      operationId: health
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/replacer.Status'
+      summary: Get Status
+      tags:
+      - status
+swagger: "2.0"

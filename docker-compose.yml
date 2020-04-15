@@ -1,0 +1,28 @@
+version: '3'
+
+networks:
+  mongo-net:
+
+services:
+  mongo-database:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: replacer
+      MONGO_INITDB_ROOT_PASSWORD: MongoDB2019!
+    ports:
+      - "27017:27017"
+    networks:
+      - mongo-net
+
+  api:
+    build: .
+    command: /bin/replacer api
+    volumes:
+      - .:/home
+      - ./test:/home/test
+    ports:
+      - "3000:3000"
+    networks:
+      - mongo-net
+    depends_on:
+      - mongo-database
